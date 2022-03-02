@@ -6,7 +6,7 @@ namespace CSVProject.Server.Models
 {
     public interface ICsvRepository
     {
-        Task<IEnumerable<Csv>> Search(int id, string fileName);
+        Task<IEnumerable<Csv>> Search(string fileName, int? id);
         Task<IEnumerable<Csv>> GetAllCsvs();
         Task<Csv> GetCsv(int id);
         Task<Csv> GetCsvByFileName(string fileName);
