@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CSVProject.Server.Models
@@ -72,6 +73,23 @@ namespace CSVProject.Server.Models
                 return result;
             }
             return null;
+        }
+
+        public async Task<IEnumerable<Csv>> Search(string fileName, int? id)
+        {
+            IQueryable<Csv> query = appDbContext.Csvs;
+
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                query = query.Where(e => e.FileName.Contains(fileName));
+            }
+
+            if (id != null)
+            {
+                query = query.Where(e => e.Id == id);
+            }
+
+            return await query.ToListAsync();
         }
     }
 }
