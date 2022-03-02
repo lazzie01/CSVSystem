@@ -125,5 +125,23 @@ namespace CSVProject.Server.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating csv record");
             }
         }
+
+        [HttpGet("{search}")]
+        public async Task<ActionResult<IEnumerable<Csv>>> Search(string fileName, int? id)
+        {
+            try
+            {
+                var result = await csvRepository.Search(fileName, id);
+
+                if (result.Any())
+                    return Ok(result);
+                return NotFound();
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
     }
 }
