@@ -74,18 +74,13 @@ namespace CSVProject.Server.Models
             return null;
         }
 
-        public async Task<IEnumerable<Csv>> Search(string fileName, int? id)
+        public async Task<IEnumerable<Csv>> Search(string fileName)
         {
             IQueryable<Csv> query = appDbContext.Csvs;
 
             if (!string.IsNullOrEmpty(fileName))
             {
                 query = query.Where(e => e.FileName.Contains(fileName));
-            }
-
-            if (id != null)
-            {
-                query = query.Where(e => e.Id == id);
             }
 
             return await query.ToListAsync();
