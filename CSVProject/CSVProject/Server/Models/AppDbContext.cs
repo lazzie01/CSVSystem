@@ -20,7 +20,8 @@ namespace CSVProject.Server.Models
 
             modelBuilder.Entity<Csv>().HasData(new Csv
             { 
-                FileName = "Student Data", 
+                Id = 1,
+                FileName = "StudentData.csv", 
                 FilePath = "StudentData.csv" 
             });
       
