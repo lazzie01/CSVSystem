@@ -127,11 +127,11 @@ namespace CSVProject.Server.Controllers
         }
 
         [HttpGet("{search}")]
-        public async Task<ActionResult<IEnumerable<Csv>>> Search(string fileName, int? id)
+        public async Task<ActionResult<IEnumerable<Csv>>> Search(string fileName)
         {
             try
             {
-                var result = await csvRepository.Search(fileName, id);
+                var result = await csvRepository.Search(fileName);
 
                 if (result.Any())
                     return Ok(result);
