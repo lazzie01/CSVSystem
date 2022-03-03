@@ -3,6 +3,7 @@ using CsvHelper.Configuration;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace CSVProject.Server.Helpers
@@ -20,7 +21,7 @@ namespace CSVProject.Server.Helpers
             csvConfiguration = csvConfiguration ?? defaultCsvConfiguration;
             using var reader = new StreamReader(csvFilePath);
             using var csv = new CsvReader(reader, csvConfiguration);
-            return csv.GetRecords<T>();
+            return csv.GetRecords<T>().ToList();
         }
 
         public static void UpdateFile<T>(string csvFilePath, IEnumerable<T> dataToWrite, bool truncateFileBeforeWriting = false, CsvConfiguration csvConfiguration = null)
