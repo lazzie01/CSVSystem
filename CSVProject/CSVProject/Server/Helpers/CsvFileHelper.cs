@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace CSVProject.Server.Helpers
 {
@@ -18,7 +17,7 @@ namespace CSVProject.Server.Helpers
 
         public static IEnumerable<T> ReadFile<T>(string csvFilePath, CsvConfiguration csvConfiguration = null)
         {
-            csvConfiguration = csvConfiguration ?? defaultCsvConfiguration;
+            csvConfiguration ??= defaultCsvConfiguration;
             using var reader = new StreamReader(csvFilePath);
             using var csv = new CsvReader(reader, csvConfiguration);
             return csv.GetRecords<T>().ToList();
@@ -26,20 +25,24 @@ namespace CSVProject.Server.Helpers
 
         public static void UpdateFile<T>(string csvFilePath, IEnumerable<T> dataToWrite, bool truncateFileBeforeWriting = false, CsvConfiguration csvConfiguration = null)
         {
-            csvConfiguration = csvConfiguration ?? defaultCsvConfiguration;
-
             if (truncateFileBeforeWriting)
             {
-                File.WriteAllText(csvFilePath, string.Empty);
+              File.WriteAllText(csvFilePath, string.Empty);
+
+              csvConfiguration ??= defaultCsvConfiguration;
+              using var writer = new StreamWriter(csvFilePath);
+              using var csv = new CsvWriter(writer, csvConfiguration);
+              csv.WriteHeader<T>();
+              csv.NextRecord();
+              csv.WriteRecords<T>(dataToWrite);
+              csv.Flush();
+            }
+            else
+            {
+                var lines = dataToWrite.Select(d => d.ToString());
+                File.AppendAllLines(csvFilePath, lines);
             }
 
-            using (var writer = new StreamWriter(csvFilePath))
-            using (var csvWriter = new CsvWriter(writer, csvConfiguration))
-            {
-                csvWriter.WriteHeader<T>();
-                csvWriter.WriteRecords(dataToWrite);
-                writer.Flush();
-            }
         }
 
     }
