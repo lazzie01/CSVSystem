@@ -49,8 +49,8 @@ namespace CSVProject.Server.Models
                 var studentToDelete = students.FirstOrDefault(s => s.StudentNumber == studentNumber);
                 if (studentToDelete != null)
                 {
-                    students = students.Where(s => s.StudentNumber != studentToDelete.StudentNumber);
-                    CsvFileHelper.UpdateFile<Student>($"{CsvConstants.Directory}{result.FileName}", students, true);
+                    var newStudents = students.Where(s => s.StudentNumber != studentToDelete.StudentNumber).ToList();
+                    CsvFileHelper.UpdateFile<Student>($"{CsvConstants.Directory}{result.FileName}", newStudents, true);
                 }
             }
         }
@@ -89,6 +89,44 @@ namespace CSVProject.Server.Models
             return null;
         }
 
+        public async Task<IEnumerable<Student>> Search(int csvFileId, string firstname, string surname, string courseCode, string courseDescription, string grade)
+        {
+            var result = await csvRepository.GetCsv(csvFileId);
+
+            if (result != null)
+            {
+                var students = CsvFileHelper.ReadFile<Student>($"{CsvConstants.Directory}{result.FileName}");
+
+                if (!string.IsNullOrEmpty(firstname))
+                {
+                    students = students.Where(s => s.Firstname.Contains(firstname));
+                }
+
+                if (!string.IsNullOrEmpty(surname))
+                {
+                    students = students.Where(s => s.Surname.Contains(surname));
+                }
+
+                if (!string.IsNullOrEmpty(courseCode))
+                {
+                    students = students.Where(s => s.CourseCode.Contains(courseCode));
+                }
+
+                if (!string.IsNullOrEmpty(courseDescription))
+                {
+                    students = students.Where(s => s.CourseCode.Contains(courseDescription));
+                }
+
+                if (!string.IsNullOrEmpty(grade))
+                {
+                    students = students.Where(s => s.Grade.Contains(grade));
+                }
+
+                return students.ToList();
+            }
+            return new List<Student>();
+        }
+
         public async Task<Student> UpdateStudent(int csvFileId, Student student)
         {
             var result = await csvRepository.GetCsv(csvFileId);
@@ -105,10 +143,10 @@ namespace CSVProject.Server.Models
                     studentToUpdate.CourseDescription = student.CourseDescription;
                     studentToUpdate.Grade = student.Grade;
 
-                    students = students.Where(s => s.StudentNumber != student.StudentNumber);
-                    students.ToList().Add(studentToUpdate);
+                    var newStudentList = students.Where(s => s.StudentNumber != student.StudentNumber).ToList();
+                    newStudentList.Add(studentToUpdate);
 
-                    CsvFileHelper.UpdateFile<Student>($"{CsvConstants.Directory}{result.FileName}", students, true);
+                    CsvFileHelper.UpdateFile<Student>($"{CsvConstants.Directory}{result.FileName}", newStudentList, true);
                     return studentToUpdate;
                 }
             }

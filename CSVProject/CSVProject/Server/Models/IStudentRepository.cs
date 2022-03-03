@@ -19,5 +19,8 @@ namespace CSVProject.Server.Models
         Task<Student> UpdateStudent(int csvFileId, Student student);
 
         Task DeleteStudent(int csvFileId, int studentNumber);
+
+        Task<IEnumerable<Student>> Search(int csvFileId, string firstname, string surname, string courseCode, string courseDescription, string grade);
+
     }
 }
