@@ -21,5 +21,11 @@ namespace CSVProject.Server.Models.Mapping
 
         [Name("Grade")]
         public string Grade { get; set; }
+
+        public override string ToString()
+        {
+            return $"{StudentNumber};{Firstname};{Surname};{CourseCode};{CourseDescription};{Grade}\n";
+        }
+
     }
 }
