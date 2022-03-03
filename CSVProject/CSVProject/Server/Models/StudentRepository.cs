@@ -97,29 +97,31 @@ namespace CSVProject.Server.Models
             {
                 var students = CsvFileHelper.ReadFile<Student>($"{CsvConstants.Directory}{result.FileName}");
 
+                var ignoreCase = System.StringComparison.OrdinalIgnoreCase;
+
                 if (!string.IsNullOrEmpty(firstname))
                 {
-                    students = students.Where(s => s.Firstname.Contains(firstname));
+                    students = students.Where(s => s.Firstname.Contains(firstname, ignoreCase));
                 }
 
                 if (!string.IsNullOrEmpty(surname))
                 {
-                    students = students.Where(s => s.Surname.Contains(surname));
+                    students = students.Where(s => s.Surname.Contains(surname, ignoreCase));
                 }
 
                 if (!string.IsNullOrEmpty(courseCode))
                 {
-                    students = students.Where(s => s.CourseCode.Contains(courseCode));
+                    students = students.Where(s => s.CourseCode.Contains(courseCode, ignoreCase));
                 }
 
                 if (!string.IsNullOrEmpty(courseDescription))
                 {
-                    students = students.Where(s => s.CourseCode.Contains(courseDescription));
+                    students = students.Where(s => s.CourseCode.Contains(courseDescription, ignoreCase));
                 }
 
                 if (!string.IsNullOrEmpty(grade))
                 {
-                    students = students.Where(s => s.Grade.Contains(grade));
+                    students = students.Where(s => s.Grade.Contains(grade, ignoreCase));
                 }
 
                 return students.ToList();
