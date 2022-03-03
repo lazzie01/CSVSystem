@@ -1,5 +1,4 @@
-﻿using CSVProject.Server.Models;
-using CSVProject.Shared.Models;
+﻿using CSVProject.DataAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

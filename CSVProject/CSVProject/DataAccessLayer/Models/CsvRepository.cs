@@ -1,12 +1,11 @@
-﻿using CSVProject.Server.Constants;
-using CSVProject.Shared.Models;
+﻿using CSVProject.DataAccessLayer.Constants;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSVProject.Server.Models
+namespace CSVProject.DataAccessLayer.Models
 {
     public class CsvRepository : ICsvRepository
     {

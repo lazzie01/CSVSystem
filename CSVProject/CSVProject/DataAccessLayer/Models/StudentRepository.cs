@@ -1,11 +1,10 @@
-﻿using CSVProject.Server.Constants;
-using CSVProject.Server.Helpers;
-using CSVProject.Server.Models.Mapping;
+﻿using CSVProject.DataAccessLayer.Constants;
+using CSVProject.DataAccessLayer.Helpers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSVProject.Server.Models
+namespace CSVProject.DataAccessLayer.Models
 {
     public class StudentRepository : IStudentRepository
     {

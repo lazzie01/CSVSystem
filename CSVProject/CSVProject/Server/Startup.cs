@@ -1,4 +1,4 @@
-using CSVProject.Server.Models;
+using CSVProject.DataAccessLayer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

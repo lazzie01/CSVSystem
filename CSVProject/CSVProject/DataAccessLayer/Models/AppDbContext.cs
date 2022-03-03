@@ -1,7 +1,6 @@
-﻿using CSVProject.Shared.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace CSVProject.Server.Models
+namespace CSVProject.DataAccessLayer.Models
 {
     public class AppDbContext : DbContext
     {

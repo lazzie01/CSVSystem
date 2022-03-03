@@ -1,8 +1,7 @@
-﻿using CSVProject.Server.Models.Mapping;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CSVProject.Server.Models
+namespace CSVProject.DataAccessLayer.Models
 {
     public interface IStudentRepository
     {

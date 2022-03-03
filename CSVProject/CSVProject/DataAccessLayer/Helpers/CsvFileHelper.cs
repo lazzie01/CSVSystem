@@ -5,7 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace CSVProject.Server.Helpers
+namespace CSVProject.DataAccessLayer.Helpers
 {
     public static class CsvFileHelper
     {

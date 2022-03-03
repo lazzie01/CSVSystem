@@ -1,7 +1,5 @@
-﻿using CSVProject.Server.Models;
-using CSVProject.Server.Models.Mapping;
+﻿using CSVProject.DataAccessLayer.Models;
 using CSVProject.Server.ViewModels;
-using CSVProject.Shared.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,7 +28,7 @@ namespace CSVProject.Server.Controllers
             {
                 return Ok(await studentRepository.GetAllStudents(id));
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }

@@ -1,9 +1,5 @@
-﻿using CSVProject.Server.Models.Mapping;
-using System;
-using System.Collections.Generic;
+﻿using CSVProject.DataAccessLayer.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CSVProject.Server.ViewModels
 {
