@@ -1,4 +1,5 @@
-﻿using CSVProject.Server.Helpers;
+﻿using CSVProject.Server.Constants;
+using CSVProject.Server.Helpers;
 using CSVProject.Server.Models.Mapping;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace CSVProject.Server.Models
 
             if (result != null)
             {
-                CsvFileHelper.UpdateFile<Student>(result.FilePath, new List<Student>() { student  });
+                CsvFileHelper.UpdateFile<Student>($"{CsvConstants.Directory}{result.FileName}", new List<Student>() { student  });
             }
             return student;
 
@@ -33,7 +34,7 @@ namespace CSVProject.Server.Models
 
             if (result != null)
             {
-                CsvFileHelper.UpdateFile<Student>(result.FilePath, students);
+                CsvFileHelper.UpdateFile<Student>($"{CsvConstants.Directory}{result.FileName}", students);
             }
             return students;
         }
@@ -44,12 +45,12 @@ namespace CSVProject.Server.Models
 
             if (result != null)
             {
-                var students = CsvFileHelper.ReadFile<Student>(result.FilePath);
+                var students = CsvFileHelper.ReadFile<Student>($"{CsvConstants.Directory}{result.FileName}");
                 var studentToDelete = students.FirstOrDefault(s => s.StudentNumber == studentNumber);
                 if (studentToDelete != null)
                 {
                     students = students.Where(s => s.StudentNumber != studentToDelete.StudentNumber);
-                    CsvFileHelper.UpdateFile<Student>(result.FilePath, students, true);
+                    CsvFileHelper.UpdateFile<Student>($"{CsvConstants.Directory}{result.FileName}", students, true);
                 }
             }
         }
@@ -60,7 +61,7 @@ namespace CSVProject.Server.Models
 
             if (result != null)
             {
-                return CsvFileHelper.ReadFile<Student>(result.FilePath);
+                return CsvFileHelper.ReadFile<Student>($"{CsvConstants.Directory}{result.FileName}");
             }
             return null;
 
@@ -72,7 +73,7 @@ namespace CSVProject.Server.Models
 
             if (result != null)
             {
-                return CsvFileHelper.ReadFile<Student>(result.FilePath).FirstOrDefault(s=>s.StudentNumber == studentNumber);
+                return CsvFileHelper.ReadFile<Student>($"{CsvConstants.Directory}{result.FileName}").FirstOrDefault(s=>s.StudentNumber == studentNumber);
             }
             return null;
         }
@@ -83,7 +84,7 @@ namespace CSVProject.Server.Models
 
             if (result != null)
             {
-                return CsvFileHelper.ReadFile<Student>(result.FilePath).FirstOrDefault(s => s.Firstname == firstName);
+                return CsvFileHelper.ReadFile<Student>($"{CsvConstants.Directory}{result.FileName}").FirstOrDefault(s => s.Firstname == firstName);
             }
             return null;
         }
@@ -94,7 +95,7 @@ namespace CSVProject.Server.Models
 
             if (result != null)
             {
-                var students = CsvFileHelper.ReadFile<Student>(result.FilePath);
+                var students = CsvFileHelper.ReadFile<Student>($"{CsvConstants.Directory}{result.FileName}");
                 var studentToUpdate = students.FirstOrDefault(s => s.StudentNumber == student.StudentNumber);
                 if (studentToUpdate != null)
                 {
@@ -107,7 +108,7 @@ namespace CSVProject.Server.Models
                     students = students.Where(s => s.StudentNumber != student.StudentNumber);
                     students.ToList().Add(studentToUpdate);
 
-                    CsvFileHelper.UpdateFile<Student>(result.FilePath, students, true);
+                    CsvFileHelper.UpdateFile<Student>($"{CsvConstants.Directory}{result.FileName}", students, true);
                     return studentToUpdate;
                 }
             }

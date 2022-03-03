@@ -12,7 +12,5 @@ namespace CSVProject.Shared.Models
         [Required]
         public string FileName { get; set; }
 
-        [Required]
-        public string FilePath { get; set; }
     }
 }

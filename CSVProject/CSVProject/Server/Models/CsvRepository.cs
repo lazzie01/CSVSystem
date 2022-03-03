@@ -1,4 +1,5 @@
-﻿using CSVProject.Shared.Models;
+﻿using CSVProject.Server.Constants;
+using CSVProject.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
@@ -11,8 +12,6 @@ namespace CSVProject.Server.Models
     {
         private readonly AppDbContext appDbContext;
 
-        private const string CsvDirectory = "Data\\";
-
         public CsvRepository(AppDbContext appDbContext)
         {
             this.appDbContext = appDbContext;
@@ -24,7 +23,7 @@ namespace CSVProject.Server.Models
             await appDbContext.SaveChangesAsync();
 
             //upload file to the folder
-            File.Copy(csv.FilePath, $"{CsvDirectory}{csv.FileName}");
+            File.Copy(csv.FileName, $"{CsvConstants.Directory}{Path.GetFileName(csv.FileName)}");
 
             return result.Entity;
         }
@@ -36,7 +35,7 @@ namespace CSVProject.Server.Models
             if (result != null)
             {
                 //delete file from the folder
-                File.Delete(result.FilePath);
+                File.Delete($"{CsvConstants.Directory}{result.FileName}");
 
                 appDbContext.Csvs.Remove(result);
                 await appDbContext.SaveChangesAsync();
@@ -65,7 +64,7 @@ namespace CSVProject.Server.Models
             if (result != null)
             {
                 //Rename the file also
-                File.Move($"{CsvDirectory}{result.FileName}", $"{CsvDirectory}{csv.FileName}");
+                File.Move($"{CsvConstants.Directory}{result.FileName}", $"{CsvConstants.Directory}{csv.FileName}");
 
                 result.FileName = csv.FileName;
                 await appDbContext.SaveChangesAsync();

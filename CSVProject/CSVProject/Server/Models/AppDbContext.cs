@@ -22,7 +22,6 @@ namespace CSVProject.Server.Models
             { 
                 Id = 1,
                 FileName = "StudentData.csv", 
-                FilePath = "StudentData.csv" 
             });
       
         }
