@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CSVProject.Shared;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CSVProject.DataAccessLayer.Models

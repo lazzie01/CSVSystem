@@ -1,0 +1,27 @@
+﻿@page "/all"
+@using CSVProject.Shared
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.DropDowns
+
+<SfGrid @ref="@csvGrid" DataSource="@Csvs" AllowPaging="true" AllowFiltering="true">
+    <GridColumns>
+        <GridColumn Field="@nameof(Csv.Id)" HeaderText="Id"></GridColumn>
+        <GridColumn Field="@nameof(Csv.FileName)" HeaderText="File Name"></GridColumn>
+    </GridColumns>
+</SfGrid>
+
+@code{
+
+    public List<Csv> Csvs { get; set; }
+
+    public SfGrid<Csv> csvGrid { get; set; }
+
+
+    [Inject]
+    public ICsvService CsvService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Csvs = (await CsvService.GetAllCsvs()).ToList();
+    }
+}

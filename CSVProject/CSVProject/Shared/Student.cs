@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace CSVProject.DataAccessLayer.Models
+namespace CSVProject.Shared
 {
     public class Student
     {

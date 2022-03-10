@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVProject.Client", "CSVPro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVProject.Shared", "CSVProject\Shared\CSVProject.Shared.csproj", "{2B414A21-E264-4F9D-905E-10A6795F38B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVProject.DataAccessLayer", "CSVProject\DataAccessLayer\CSVProject.DataAccessLayer.csproj", "{33AE7EDE-66B5-47DA-B9BE-6A1A888B74C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVProject.DataAccessLayer", "CSVProject\DataAccessLayer\CSVProject.DataAccessLayer.csproj", "{33AE7EDE-66B5-47DA-B9BE-6A1A888B74C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

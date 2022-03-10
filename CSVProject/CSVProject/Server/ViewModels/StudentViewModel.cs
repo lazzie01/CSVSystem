@@ -1,4 +1,4 @@
-﻿using CSVProject.DataAccessLayer.Models;
+﻿using CSVProject.Shared;
 using System.ComponentModel.DataAnnotations;
 
 namespace CSVProject.Server.ViewModels

@@ -1,10 +1,12 @@
 ﻿using CSVProject.Shared;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSVProject.DataAccessLayer.Models
+namespace CSVProject.Client.Services
 {
-    public interface ICsvRepository
+    public interface ICsvService
     {
         Task<IEnumerable<Csv>> Search(string fileName);
         Task<IEnumerable<Csv>> GetAllCsvs();

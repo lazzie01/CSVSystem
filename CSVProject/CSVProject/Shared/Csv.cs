@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CSVProject.DataAccessLayer.Models
+namespace CSVProject.Shared
 {
     public class Csv
     {

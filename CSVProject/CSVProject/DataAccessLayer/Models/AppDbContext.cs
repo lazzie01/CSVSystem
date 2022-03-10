@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CSVProject.Shared;
+using Microsoft.EntityFrameworkCore;
 
 namespace CSVProject.DataAccessLayer.Models
 {
